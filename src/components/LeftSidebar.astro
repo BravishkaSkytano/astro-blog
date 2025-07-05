@@ -1,0 +1,18 @@
+---
+import type { NavigationContext, WebsiteContext } from "../types";
+import Header from "./Header.astro";
+import NavigationTree from "./Navigation/Tree.astro";
+import Sidebar from './Sidebar.astro';
+
+export type Props = {
+  navigation: NavigationContext;
+  website: WebsiteContext;
+}
+
+const { navigation, website } = Astro.props;
+---
+
+<Sidebar open>
+  <Header website={website} />
+  <NavigationTree navigation={navigation} />
+</Sidebar>

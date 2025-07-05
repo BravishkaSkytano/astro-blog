@@ -1,0 +1,58 @@
+---
+import { getCollection } from "astro:content";
+import website from "../../website.config.mjs";
+import Layout from "../components/Layout.astro";
+import LeftSidebar from "../components/LeftSidebar.astro";
+import RightSidebar from "../components/RightSidebar.astro";
+import {
+DOCUMENTS_COLLECTION_NAME,
+} from "../constants";
+import { buildTree } from "../helpers/buildTree";
+import { useI18n } from "../i18n/utils";
+import type { PageContext } from "../types";
+
+const { t } = useI18n(Astro);
+
+const page: PageContext = {
+  language: website.defaultLanguage,
+  title: t('404.title'),
+  seo: {
+    description: t('404.description'),
+  },
+};
+
+const documents = await getCollection(DOCUMENTS_COLLECTION_NAME);
+
+const tree = buildTree(documents);
+
+const entry = Astro.url.searchParams.get("entry");
+---
+
+<Layout page={page}>
+  <LeftSidebar
+    website={website}
+    navigation={{
+      ...{
+        tree,
+        backlinks: [],
+      },
+    }}
+  />
+
+  <article class="p-8 bg-gray-50 rounded-xl grow-1">
+    <h1 class="text-4xl mb-4">
+      {t('404.title')}
+    </h1>
+    <p class="text-lg">
+      {t('404.description')}
+    </p>
+  </article>
+  <RightSidebar
+    navigation={{
+      ...{
+        tree,
+        backlinks: [],
+      },
+    }}
+  />
+</Layout>
