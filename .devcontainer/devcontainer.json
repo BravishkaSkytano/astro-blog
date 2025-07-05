@@ -1,0 +1,23 @@
+{
+  "name": "Astro Dev Container",
+  "image": "mcr.microsoft.com/devcontainers/javascript-node:20",
+  "postCreateCommand": "pnpm install",
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "astro-build.astro-vscode",
+        "dbaeumer.vscode-eslint",
+        "oderwat.indent-rainbow",
+        "esbenp.prettier-vscode",
+        "pranaygp.vscode-css-peek"
+      ]
+    }
+  },
+  "forwardPorts": [4321],
+  "portsAttributes": {
+    "4321": {
+      "label": "Astro",
+      "onAutoForward": "openBrowser"
+    }
+  }
+}

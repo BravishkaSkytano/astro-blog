@@ -1,4 +1,11 @@
 {
-  "recommendations": ["astro-build.astro-vscode"],
+  "recommendations": [
+    "astro-build.astro-vscode",
+    "ms-vscode-remote.remote-containers",
+    "siris01.ayu-green",
+    "vscode-icons-team.vscode-icons",
+    "formulahendry.auto-rename-tag",
+    "aaron-bond.better-comments"
+  ],
   "unwantedRecommendations": []
 }
