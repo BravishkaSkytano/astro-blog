@@ -5,17 +5,16 @@
 
 
 version: 2
-updates:
-  - package-ecosystem: "gitsubmodule"
-    directory: "src/content/vault" # or wherever your submodule is
-    schedule:
-      interval: "daily"
-    # 👇 Add token for authentication
-    registries:
-      - github-private
-
 registries:
   github-private:
     type: git
     url: https://github.com/BravishkaSkytano/obsidian-vault.git
-    ssh-key: "${{secrets.PRIVATE_REPO_ACCESS}}"
+    token: "${{secrets.PRIVATE_REPO_ACCESS}}"
+updates:
+  - package-ecosystem: "gitsubmodule"
+    directory: "/src/content/vault" # or wherever your submodule is
+    schedule:
+      interval: "daily"
+    # Add token for authentication
+    registries:
+      - github-private
