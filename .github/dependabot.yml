@@ -6,11 +6,10 @@
 
 version: 2
 registries:
-  github-private:
+  private-submodule:
     type: git
-    url: https://github.com
-    username: BravishkaSkytano
-    password: "${{secrets.PRIVATE_REPO_ACCESS}}"
+    url: git@github.com
+    ssh-key: "${{secrets.DEPENDABOT_SSH_KEY}}"
 updates:
   - package-ecosystem: "gitsubmodule"
     directory: "/"
@@ -18,4 +17,4 @@ updates:
       interval: "daily"
     # Add token for authentication
     registries:
-      - github-private
+      - private-submodule
