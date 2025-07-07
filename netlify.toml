@@ -1,0 +1,7 @@
+[build]
+  command = """
+  git config --global url.\"https://${GH_TOKEN}@github.com/\".insteadOf \"https://github.com/\"
+  git submodule update --init --recursive
+  pnpm run build
+  """
+  publish = "dist" # or your output directory
