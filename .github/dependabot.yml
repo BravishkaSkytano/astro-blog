@@ -3,16 +3,19 @@
 # Please see the documentation for all configuration options:
 # https://docs.github.com/code-security/dependabot/dependabot-version-updates/configuration-options-for-the-dependabot.yml-file
 
+
 version: 2
 updates:
-  - package-ecosystem: "gitsubmodule" # See documentation for possible values
-    directory: "/" # Location of package manifests
+  - package-ecosystem: "gitsubmodule"
+    directory: "/src/content/vault" # or wherever your submodule is
     schedule:
       interval: "daily"
+    # 👇 Add token for authentication
+    registries:
+      - github-private
 
 registries:
-  github:
+  github-private:
     type: git
-    url: https://github.com/
-    username: x-access-token
-    password: ${{ secrets.PRIVATE_REPO_ACCESS }} # saved as a dependabot secret
+    url: git@github.com:BravishkaSkytano/obsidian-vault.git
+    ssh-key: "${{secrets.DEPENDABOT_SSH_KEY}}"
