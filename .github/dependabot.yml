@@ -9,3 +9,10 @@ updates:
     directory: "/" # Location of package manifests
     schedule:
       interval: "daily"
+
+registries:
+  github:
+    type: git
+    url: https://github.com/
+    username: x-access-token
+    password: ${{ secrets.PRIVATE_REPO_ACCESS }} # saved as a dependabot secret
