@@ -10,6 +10,7 @@ export const collections = {
 	[DOCUMENTS_COLLECTION_NAME]: defineCollection({
 		loader: ObsidianMdLoader({
 			author: config.author,
+			pattern: ['**/*.md', '!_unsorted/**/*'],
 			base: 'src/content/vault',
 			url: '',
 		}),
