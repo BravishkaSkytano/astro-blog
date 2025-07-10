@@ -24,7 +24,7 @@
     "rehype-rewrite": "^4.0.2",
     "remark-code-extra": "^1.0.1",
     "remark-obsidian-callout": "^1.5.1",
-    "sharp": "^0.32.6",
+    "sharp": "^0.34.2",
     "tailwindcss": "^4.1.11"
   },
   "devDependencies": {
