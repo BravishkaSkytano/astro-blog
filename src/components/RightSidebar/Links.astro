@@ -1,0 +1,20 @@
+---
+import type { DocumentContext, NavigationContext } from '../../types'
+
+import BackLinks from "./BackLinks.astro";
+import OutgoingLinks from "./OutgoingLinks.astro";
+
+export type Props = {
+  document?: DocumentContext;
+  navigation: NavigationContext;
+}
+
+const { document, navigation } = Astro.props;
+---
+
+<div
+  class="flex flex-col gap-0.5 max-h-[calc(100dvh_-_150px)] md:max-h-[calc(100dvh_-_170px)] scrollbar-thin overflow-auto"
+>
+  <OutgoingLinks document={document} />
+  <BackLinks navigation={navigation} />
+</div>

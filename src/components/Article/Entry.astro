@@ -1,0 +1,43 @@
+---
+import { render } from "astro:content";
+
+import type { AuthorContext, DocumentContext, TagsContext } from "../../types";
+
+import CoverImage from "./CoverImage.astro";
+import Tags from "./Tags.astro";
+import ArticleDate from "./Date.astro";
+import Author from "./Author.astro";
+import Title from "./Title.astro";
+import Subtitle from "./Subtitle.astro";
+import Description from "./Description.astro";
+
+export type Props = {
+  author?: AuthorContext;
+  document: DocumentContext;
+  tags: TagsContext;
+};
+
+const { author, document, tags } = Astro.props;
+const { data } = document;
+
+const { Content } = await render(document);
+---
+
+<article class="article" data-pagefind-body>
+  <section class="article-content">
+    <Title document={document} />
+    <Subtitle document={document} />
+    <div class="flex flex-col lg:flex-row justify-end">
+      <Description document={document} />
+      <div class="flex flex-col lg:items-end gap-2 w-full">
+        <Author author={author} />
+        <ArticleDate document={document} />
+        <Tags tags={tags} />
+      </div>
+    </div>
+    <CoverImage {...data} />
+    <div data-pagefind-weight="0.1" class="article-body">
+      <Content />
+    </div>
+  </section>
+</article>

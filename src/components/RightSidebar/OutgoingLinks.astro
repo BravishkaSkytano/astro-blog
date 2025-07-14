@@ -1,0 +1,45 @@
+---
+import { useI18n } from "../../i18n/utils";
+import type { DocumentContext } from "../../types";
+import ImageIcon from "../Icons/Image.astro";
+import LinkIcon from "../Icons/Link.astro";
+
+export type Props = {
+  document?: DocumentContext;
+};
+
+const { document } = Astro.props;
+
+const links = document?.data?.links ?? [];
+const images = document?.data?.images ?? [];
+
+const shouldRender = !!((links.length && links.length > 0) || (images.length && images.length > 0));
+
+const { t } = useI18n(Astro);
+---
+
+{
+  shouldRender && (
+    <nav class="links">
+      <h2 class="links-title">{t('nav.links')}</h2>
+      <ul class="flex flex-col gap-0.5">
+        {links.map((link) => (
+          <li class="link">
+            <a class="flex gap-2" href={link.href} title={link.title}>
+              <LinkIcon />
+              <span class="truncate">{link.title}</span>
+            </a>
+          </li>
+        ))}
+        {images.map((image) => (
+          <li class="link">
+            <a class="flex gap-2" href={image.href} title={image.title}>
+              <ImageIcon />
+              <span class="truncate">{image.title}</span>
+            </a>
+          </li>
+        ))}
+      </ul>
+    </nav>
+  )
+}

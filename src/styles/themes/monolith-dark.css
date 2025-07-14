@@ -1,0 +1,4 @@
+
+@import './monolith';
+
+@custom-variant dark (&:where(.body, .body *));

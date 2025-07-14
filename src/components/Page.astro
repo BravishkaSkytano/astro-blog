@@ -1,0 +1,18 @@
+---
+import type { Props } from "../helpers/getStaticPaths";
+import Entry from "./Article/Entry.astro";
+import Layout from "./Layout.astro";
+import LeftSidebar from "./LeftSidebar/LeftSidebar.astro";
+import RightSidebar from "./RightSidebar/RightSidebar.astro";
+
+export type { Props };
+
+const { author, document, navigation, page, tags, website } = Astro.props;
+---
+
+<Layout page={page} document={document}>
+  <slot />
+  <LeftSidebar website={website} navigation={navigation} />
+  <Entry author={author} document={document} tags={tags} />
+  <RightSidebar document={document} navigation={navigation} />
+</Layout>

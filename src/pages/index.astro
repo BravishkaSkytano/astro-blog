@@ -1,49 +1,54 @@
 ---
+import "../styles/landing.css";
 
-import Logo from '../content/vault/Assets/logos/logo.jpg';
+import Logo from "../assets/logo.png";
 
-import website from "../../website.config.mjs";
+import website from "../../website.config.json";
 
+import KnowledgeGraph from "../components/KnowledgeGraph.astro";
 import Layout from "../components/Layout.astro";
-import LeftSidebar from "../components/LeftSidebar.astro";
-import RightSidebar from "../components/RightSidebar.astro";
-import {
-DOCUMENTS_COLLECTION_NAME,
-} from "../constants";
 
 import { Image } from "astro:assets";
-import { getCollection } from "astro:content";
-import { buildTree } from "../helpers/buildTree";
-
-const documents = await getCollection(DOCUMENTS_COLLECTION_NAME);
-
-const tree = buildTree(documents);
 ---
 
-<Layout page={{
-  title: website.title,
-  language: website.defaultLanguage,
-  seo: {
-    description: website.description,
-  }
-}}>
-  <LeftSidebar website={website} navigation={{...{
-    tree,
-    backlinks: [],
-  }}} />
-  <article class="flex flex-col gap-24 rounded-4xl items-center grow-1 justify-center p-3 max-w-full">
-    <section class="flex flex-col gap-6 items-center">
-      <h1 class="text-6xl lg:text-8xl font-title text-article-title-foreground dark:text-article-title-foreground-dark">{website.title}</h1>
-      <p class="text-3xl font-heading text-paragraph-foreground dark:text-paragraph-foreground-dark">
+<Layout
+  page={{
+    title: website.title,
+    language: website.defaultLocale,
+    seo: {
+      description: website.description,
+    },
+  }}
+>
+  <div class="stars"></div>
+  <div class="twinkling"></div>
+  <div class="clouds"></div>
+  <div class="absolute w-full h-full">
+    <KnowledgeGraph />
+  </div>
+  <a href={`/${website.base}/welcome`}>
+    <section
+      class="perspective group absolute left-[50%] top-[50%] -translate-x-[50%] -translate-y-[50%]"
+    >
+      <Image
+        src={Logo}
+        alt=""
+        class="mx-auto h-[33vh] w-auto transition-all group-hover:rotate-x-25"
+      />
+    </section>
+  </a>
+  <a href={`/${website.base}/welcome`}>
+    <section
+      class="absolute bottom-[20px] md:bottom-[100px] left-[50%] -translate-x-[50%] flex flex-col gap-3 md:gap-6 items-center transition-all group-hover:-rotate-x-25"
+    >
+      <h1
+        class="text-6xl lg:text-8xl font-title bg-gradient-to-r from-obsidian-500 via-purple-400 to-pink-500 inline-block text-transparent bg-clip-text"
+      >
+        {website.title}
+      </h1>
+      <p class="text-xl lg:text-3xl text-balance text-center font-heading text-white">
         {website.description}
       </p>
     </section>
-    <section class="flex flex-col lg:flex-row bg-article-background dark:bg-article-background-dark rounded-4xl items-center justify-center py-8 min-w-[80%] shadow-lg">
-      <Image src={Logo} alt="" class="h-[50vh] w-auto"  />
-    </section>
-  </article>
-  <RightSidebar navigation={{...{
-    tree,
-    backlinks: [],
-  }}} />
+  </a>
 </Layout>

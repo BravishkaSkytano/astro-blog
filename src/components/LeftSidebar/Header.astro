@@ -1,0 +1,21 @@
+---
+import type { WebsiteContext } from "../../types";
+import Logo from "../Icons/Logo.astro";
+
+export type Props = {
+  id?: string;
+  website: WebsiteContext;
+};
+
+const { id, website } = Astro.props;
+---
+
+<header id={id} class="header">
+  <a
+    href={import.meta.env.BASE_URL}
+    class="header-link"
+  >
+    <Logo />
+    {website.title}
+  </a>
+</header>

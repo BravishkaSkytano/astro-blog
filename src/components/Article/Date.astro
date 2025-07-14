@@ -1,0 +1,14 @@
+---
+import type { DocumentContext } from "../../types";
+
+export type Props = {
+  document: DocumentContext;
+};
+
+const { updated } = Astro.props.document.data;
+---
+{
+  updated && (
+    <span data-pagefind-weight="0" class="article-date">{updated.toLocaleDateString("es-ES")}</span>
+  )
+}

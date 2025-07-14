@@ -1,0 +1,143 @@
+@import '../common/base';
+
+/* ibm-plex-sans-latin-wght-normal */
+@font-face {
+  font-family: 'IBM Plex Sans Variable';
+  font-style: normal;
+  font-display: swap;
+  font-weight: 100 700;
+  src: url(https://cdn.jsdelivr.net/fontsource/fonts/ibm-plex-sans:vf@latest/latin-wght-normal.woff2) format('woff2-variations');
+  unicode-range: U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;
+}
+
+/* jetbrains-mono-latin-wght-normal */
+@font-face {
+  font-family: 'JetBrains Mono Variable';
+  font-style: normal;
+  font-display: swap;
+  font-weight: 100 800;
+  src: url(https://cdn.jsdelivr.net/fontsource/fonts/jetbrains-mono:vf@latest/latin-wght-normal.woff2) format('woff2-variations');
+  unicode-range: U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;
+}
+
+/* space-grotesk-latin-wght-normal */
+@font-face {
+  font-family: 'Space Grotesk Variable';
+  font-style: normal;
+  font-display: swap;
+  font-weight: 300 700;
+  src: url(https://cdn.jsdelivr.net/fontsource/fonts/space-grotesk:vf@latest/latin-wght-normal.woff2) format('woff2-variations');
+  unicode-range: U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;
+}
+
+/* fira-code-latin-wght-normal */
+@font-face {
+  font-family: 'Fira Code Variable';
+  font-style: normal;
+  font-display: swap;
+  font-weight: 300 700;
+  src: url(https://cdn.jsdelivr.net/fontsource/fonts/fira-code:vf@latest/latin-wght-normal.woff2) format('woff2-variations');
+  unicode-range: U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;
+}
+
+@theme {
+  --font-title: "JetBrains Mono Variable", "sans-serif";
+  --font-heading: "Space Grotesk Variable",  "sans-serif";
+  --font-paragraph: "IBM Plex Sans Variable";
+  --font-menu: "JetBrains Mono Variable",  "sans-serif";
+  --font-code: "Fira Code Variable", "ui-monospace";
+
+  --left-sidebar-content-height: calc(100vh - 200px);
+
+  --animate-bg-position: animate-bg-position 15s linear infinite;
+}
+
+@utility main {
+  @apply p-3 lg:p-6 lg:gap-6;
+} 
+
+@utility article {
+  @apply p-4 lg:p-8 rounded-xl shadow-lg mb-6;
+}
+
+@utility article-title {
+  @apply text-center;
+}
+
+@utility article-subtitle {
+  @apply !mt-2 text-center opacity-60 italic;
+}
+
+@utility article-description {
+  @apply !m-0 !mb-8 text-2xl lg:text-3xl xl:text-4xl text-balance;
+}
+
+@utility article-tag {
+  @apply rounded-xl px-2 py-2;
+}
+
+@utility sidebar {
+	@apply flex h-[calc(100vh_-_80px)] lg:h-[calc(100vh_-_50px)] top-3 lg:top-6;
+}
+
+@utility sidebar-content {
+  @apply rounded-xl shadow-lg py-8 px-2;
+}
+
+@utility sidebar-arrow {
+	@apply bg-button-background dark:bg-button-background-dark rounded-full;
+}
+@utility header {
+  @apply h-11 px-2;
+}
+
+@utility tabset-tab {
+	@apply border-b hover:border-b-0 hover:border p-2 rounded-t-lg;
+}
+
+@utility tabset-tab-one {
+  @apply peer-checked/tab-one:border peer-checked/tab-one:border-b-0;
+}
+
+@utility tabset-tab-two {
+  @apply peer-checked/tab-two:border peer-checked/tab-two:border-b-0;
+}
+
+@utility tabset-tab-three {
+  @apply peer-checked/tab-three:border peer-checked/tab-three:border-b-0;
+}
+
+@utility bg-texture {
+  opacity: .12;
+  mix-blend-mode: multiply;
+  z-index: 100;
+  isolation: isolate;
+  pointer-events: none;
+  background-repeat: repeat;
+  background-size: 100% 100%;
+  width: 100vw;
+  height: 100dvh;
+  position: fixed;
+  inset: 0;
+}
+
+@utility bg-texture-light {
+  background-image: url(../../assets/texture-light.png);
+}
+
+@utility bg-texture-dark {
+  background-image: url(../../assets/texture-dark.png);
+}
+
+
+@utility texture {
+  @apply bg-texture bg-texture-light dark:bg-texture-dark;
+}
+
+@utility article-image {
+  @apply prose-img:rounded-3xl;
+}
+
+@utility article-cover {
+  @apply rounded-3xl shadow;
+}

@@ -2,7 +2,7 @@ import { ObsidianDocumentSchema, ObsidianMdLoader } from "astro-loader-obsidian"
 import { glob } from "astro/loaders";
 import { defineCollection, z } from 'astro:content';
 
-import config from '../website.config.mjs';
+import config from '../website.config.json';
 import { AUTHORS_COLLECTION_NAME, DOCUMENTS_COLLECTION_NAME, TAGS_COLLECTION_NAME } from './constants';
 
 
@@ -10,7 +10,7 @@ export const collections = {
 	[DOCUMENTS_COLLECTION_NAME]: defineCollection({
 		loader: ObsidianMdLoader({
 			author: config.author,
-			pattern: ['**/*.md', '!_unsorted/**/*'],
+			pattern: ['**/*.md', '!_*/**/*'],
 			base: 'src/content/vault',
 			url: '',
 		}),

@@ -1,0 +1,10 @@
+
+
+
+@utility spoiler {
+  @apply flex flex-col w-full h-full px-4 font-paragraph peer-checked:hidden cursor-pointer bg-slate-800 text-white;
+}
+
+@utility spoiled {
+  @apply hidden flex-col w-full h-full px-4 font-paragraph peer-checked:flex cursor-pointer;
+}

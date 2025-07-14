@@ -1,14 +1,14 @@
-import websiteConfig from "../../website.config.mjs";
+import websiteConfig from "../../website.config.json";
 import type { DocumentContext, PageContext } from "../types";
 
 const shortenText = (text: string, length: number) => {
   if (text.length > length) {
-    return text.substring(0, length - 3) + '...';
+    return `${text.substring(0, length - 3)}...`;
   }
   return text;
 }
 
-export const buildPage = (doc: DocumentContext, language = websiteConfig.defaultLanguage): PageContext => {
+export const buildPage = (doc: DocumentContext, language = websiteConfig.defaultLocale): PageContext => {
 
   const docDescription = doc.data.description ?? doc.data.subtitle;
 

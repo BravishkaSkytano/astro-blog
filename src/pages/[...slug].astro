@@ -1,74 +1,13 @@
 ---
-import type { GetStaticPaths } from "astro";
-import { getCollection } from "astro:content";
+import '../styles/global.css';
 
-import {
-AUTHORS_COLLECTION_NAME,
-DOCUMENTS_COLLECTION_NAME,
-TAGS_COLLECTION_NAME,
-} from "../constants";
-import type {
-AuthorContext,
-DocumentContext,
-NavigationContext,
-PageContext,
-TagsContext,
-} from "../types";
+import { getStaticPaths, type Props } from "../helpers/getStaticPaths";
 
-import website from "../../website.config.mjs";
-import { buildAuthor } from "../helpers/buildAuthor";
-import { buildPage } from "../helpers/buildPage";
-import { buildTags } from "../helpers/buildTags";
-import { buildTree } from "../helpers/buildTree";
+import Page from '../components/Page.astro';
 
-import Article from "../components/Article.astro";
-import Layout from "../components/Layout.astro";
-import LeftSidebar from "../components/LeftSidebar.astro";
-import RightSidebar from "../components/RightSidebar.astro";
+export type { Props };
 
-export type Props = {
-  author?: AuthorContext;
-  document: DocumentContext;
-  navigation: NavigationContext;
-  page: PageContext;
-  tags: TagsContext;
-};
-
-export const getStaticPaths = (async () => {
-  const authors = await getCollection(AUTHORS_COLLECTION_NAME);
-  const documents = await getCollection(DOCUMENTS_COLLECTION_NAME);
-  const tags = await getCollection(TAGS_COLLECTION_NAME);
-
-  const tree = buildTree(documents);
-
-  return documents.filter(d => d.data.publish !== false).map((document) => ({
-    params: { slug: document.id },
-    props: {
-      author: buildAuthor(
-        document,
-        authors.find((a) => a.id === document.data.author)
-      ),
-      document,
-      navigation: {
-        tree,
-        backlinks: documents.filter((d) =>
-          d.data.links?.some((l) => l.href === document.data.permalink)
-        ),
-      },
-      page: buildPage(document),
-      tags: buildTags(
-        document,
-        tags.filter((t) => document.data.tags?.some((dt) => dt === t.id))
-      ),
-    } satisfies Props,
-  }));
-}) satisfies GetStaticPaths;
-
-const { author, document, navigation, page, tags } = Astro.props;
+export { getStaticPaths };
 ---
 
-<Layout page={page} document={document}>
-  <LeftSidebar website={website} navigation={navigation} />
-  <Article author={author} document={document} tags={tags} />
-  <RightSidebar document={document} navigation={navigation} />
-</Layout>
+<Page {...Astro.props} />

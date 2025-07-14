@@ -1,0 +1,30 @@
+---
+import type { NavigationContext, WebsiteContext } from "../../types";
+
+import Sidebar from '../Sidebar.astro';
+
+import Header from "./Header.astro";
+import Search from "./Search.astro";
+import NavigationTree from "./Tree.astro";
+
+
+export type Props = {
+  open?: boolean;
+  navigation: NavigationContext;
+  website: WebsiteContext;
+}
+
+const { navigation, open = true, website } = Astro.props;
+---
+
+<Sidebar class="hidden lg:flex" id="left-sidebar-desktop" open={open}>
+  <Header id="header-desktop" website={website} />
+  <Search />
+  <NavigationTree navigation={navigation} />
+</Sidebar>
+
+<Sidebar class="flex lg:hidden" id="left-sidebar-touch">
+  <Header id="header-touch" website={website} />
+  <Search />
+  <NavigationTree navigation={navigation} />
+</Sidebar>

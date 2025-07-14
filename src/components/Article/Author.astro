@@ -1,0 +1,24 @@
+---
+import { useI18n } from '../../i18n/utils';
+import type { AuthorContext } from '../../types'
+
+export type Props = {
+  author?: AuthorContext
+};
+
+const { t } = useI18n(Astro);
+
+const { author } = Astro.props;
+---
+{
+  author && (
+    <span data-pagefind-weight="0" class="article-author">
+      {t("article.author.name", { name: author.data.name })}
+    </span>
+  )
+}
+{
+  author?.data.title && (
+    <span data-pagefind-weight="0" class="article-author">{author.data.title}</span>
+  )
+}

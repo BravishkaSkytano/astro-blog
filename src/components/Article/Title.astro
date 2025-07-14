@@ -1,0 +1,11 @@
+---
+import type { DocumentContext } from "../../types";
+
+export type Props = {
+  document: DocumentContext;
+};
+
+const { title, subtitle } = Astro.props.document.data;
+---
+
+<h1 data-pagefind-weight="10" class:list={["article-title", subtitle && "!mb-2"]}>{title}</h1>

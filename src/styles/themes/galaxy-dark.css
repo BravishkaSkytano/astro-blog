@@ -1,0 +1,4 @@
+
+@import './galaxy';
+
+@custom-variant dark (&:where(.body, .body *));

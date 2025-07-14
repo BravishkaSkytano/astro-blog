@@ -10,7 +10,7 @@ export type Props = {
 const { tree } = Astro.props.navigation;
 ---
 
-<nav>
+<nav class="navigation-tree">
   <ul class="flex flex-col gap-0.5">
     {tree.map((document) => <Leaf node={document} />)}
   </ul>

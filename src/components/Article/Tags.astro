@@ -1,0 +1,18 @@
+---
+import type { TagsContext } from '../../types';
+
+export type Props = {
+  tags: TagsContext;
+}
+
+const { tags } = Astro.props;
+---
+{
+  tags.tags.length > 0 && (
+    <div data-pagefind-weight="0" class="flex flex-wrap flex-row lg:flex-row-reverse gap-4">
+      {tags.tags.map((t) => (
+        <span class="article-tag">{t.data.name}</span>
+      ))}
+    </div>
+  )
+}

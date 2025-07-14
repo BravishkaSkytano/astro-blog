@@ -1,0 +1,14 @@
+---
+import '../../../styles/themes/monolith-dark.css';
+
+import { getStaticPathsForThemePage } from "../../../helpers/getStaticPaths";
+import Page from '../../../components/Page.astro';
+
+const staticPath = await getStaticPathsForThemePage('monolith');
+
+if (!staticPath) {
+  return Astro.redirect('404');
+}
+---
+
+<Page {...staticPath.props} />

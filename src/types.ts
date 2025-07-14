@@ -1,8 +1,8 @@
-import { type CollectionEntry } from "astro:content";
+import type { CollectionEntry } from "astro:content";
 
 export type WebsiteContext = {
   title: string;
-  defaultLanguage: string;
+  defaultLocale: string;
 };
 
 export type Seo = {
@@ -48,3 +48,22 @@ export type NavigationContext = {
   tree: Node<CollectionEntry<"documents">>[];
   backlinks: CollectionEntry<"documents">[];
 };
+
+export type KnowledgeGraphData = {
+  nodes: KnowledgeGraphNode[];
+  links: KnowledgeGraphLink[];
+}
+
+export type KnowledgeGraphNode = {
+  id: string;
+  href?: string;
+  title?: string;
+  group?: string;
+  radius: number;
+}
+
+export type KnowledgeGraphLink = {
+  source: string;
+  target: string;
+  value: number;
+}
